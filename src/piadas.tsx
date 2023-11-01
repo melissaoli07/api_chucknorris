@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { Favoritos } from './favoritos'
 
 export const Piadas = () => {
     const [joke, setJoke] = useState("");
@@ -77,11 +80,13 @@ export const Piadas = () => {
 />
 
         <Link to="/favorites">Ver Favoritos</Link>
+        <Routes>
         <Route
             path="/favorites"
             render={() => (
-                <Favorites favorites={favorites} handleDelete={handleDelete} />
+                <Favoritos favoritos={favorites} handleDelete={handleDelete} />
             )}
         />
+       </Routes>
     </div>)
 }
