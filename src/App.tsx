@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Favorites from "./Favorites.js"; 
+import Favorites from "./favoritos.tsx"; 
 
 function App() {
   const [joke, setJoke] = useState("");
