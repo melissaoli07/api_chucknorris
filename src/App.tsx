@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Favorites from "./favoritos.tsx"; 
+import {Favoritos} from "./favoritos"; 
 
 function App() {
   const [joke, setJoke] = useState("");
@@ -20,17 +20,14 @@ function App() {
     fetch("https://api.chucknorris.io/jokes/random")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setJoke(data.value);
       })
       .catch((error) => console.error("Error fetching joke:", error));
   };
 
-  const handleJoke = (joke: string) => {
-    const jokesNovo = [...favorites]; // na primeirq vez, vai estar vazio = []
-    console.log("JokesNovo: ", jokesNovo);
+  const handleJoke = (joke) => {
+    const jokesNovo = [...favorites];
     jokesNovo.push(joke);
-    //com o personagensNovo atualizado, colocamos no estado do react
     setFavorites(jokesNovo);
     localStorage.setItem("favorites", JSON.stringify(jokesNovo));
     fetchJoke();
@@ -50,45 +47,24 @@ function App() {
     }
   };
 
-  // camada de view => JSX / HTML
   return (
-    <Router>
-    <div className="App">
-      <h1>Chuck Norris Joke</h1>
-      <div className="joke-item">
-        <p className="joke-name">{joke}</p>
-      </div>
-      <button onClick={fetchJoke}>Nova Piada</button>
-      <button onClick={() => handleJoke(joke)} className="favorite-button">
-        Adicionar aos Favoritos <IoIosHeartEmpty className="heart-icon" />
-      </button>
-      <button onClick={clearFavorites}>Limpar Favoritos</button>
-      <div className="favorites-list">
-        <h2>
-          Lista de favoritos <IoIosHeartEmpty className="heart-icon" />
-        </h2>
-        {favorites.length > 0 ? (
-          <ul>
-            {favorites.map((favorite, index) => (
-              <li key={index}>
-                {favorite}
-                <button onClick={() => handleDelete(index)}>Excluir</button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Nenhuma piada favorita.</p>
-        )}
-      </div>
-      <Link to="/favorites">Ver Favoritos</Link>
-        <Route
-          path="/favorites"
-          render={() => (
-            <Favorites favorites={favorites} handleDelete={handleDelete} />
-          )}
-        />
-    </div>
-    </Router>
+      <div className="App">
+        <h1>Chuck Norris Joke</h1>
+        <Link to="/piadas">Piadas</Link>
+        <Link to="/favoritos">Favoritos</Link>
+
+              <div className="joke-item">
+                <p className="joke-name">{joke}</p>
+              </div>
+              <button onClick={fetchJoke}>Nova Piada</button>
+              <button onClick={() => handleJoke(joke)} className="favorite-button">
+                Adicionar aos Favoritos <IoIosHeartEmpty className="heart-icon" />
+              </button>
+              <button onClick={clearFavorites}>Limpar Favoritos</button>
+            </div>
+         
+
+        
   );
 }
 
@@ -97,6 +73,3 @@ export default App;
 
 
 
-
-
- 

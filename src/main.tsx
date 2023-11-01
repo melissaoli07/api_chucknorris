@@ -1,44 +1,30 @@
-/*import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router } from "react-router-dom";
-import App from "./App";
-import "./index.css";
-
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
-  document.getElementById("root")
-);
-*/
-
 import {
   createBrowserRouter,
-  createRoutesFromElements,
-  Route,
+  Outlet,
   RouterProvider,
 } from "react-router-dom";
-import { Piadas } from "./piadas";
-import { Favoritos } from './favoritos'
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import React from "react";
+import { Piadas } from "./piadas";
+import App from "./App";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Piadas />}>
-      <Route path="favoritos" element={<Favoritos />} />
-    </Route>
-  )
+  [
+    {
+      path: "/",
+      element: <Piadas />
+    },
+    {
+      path: "/favoritos",
+      element: <Piadas />
+    }
+  ]
 );
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const root = ReactDOM.createRoot(document.getElementById("root")!)
+root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <Outlet/>
   </React.StrictMode>
 );

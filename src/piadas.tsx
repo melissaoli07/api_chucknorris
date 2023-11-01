@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { IoIosHeartEmpty } from "react-icons/io";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import { Favoritos } from './favoritos'
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import "./style.css";
+import "./App.css";
+import "./index.css";
 
 export const Piadas = () => {
     const [joke, setJoke] = useState("");
@@ -76,17 +78,10 @@ export const Piadas = () => {
                 <p>Nenhuma piada favorita.</p>
             )}
         </div> 
-)}
-/>
 
-        <Link to="/favorites">Ver Favoritos</Link>
-        <Routes>
-        <Route
-            path="/favorites"
-            render={() => (
-                <Favoritos favoritos={favorites} handleDelete={handleDelete} />
-            )}
-        />
-       </Routes>
+        <Link to="/favoritos">Ver Favoritos</Link>
     </div>)
 }
+
+
+

@@ -26,8 +26,8 @@ function Favorites({ favorites, handleDelete }) {
 export default Favorites;
 */
 
-import React from "react";
 import { IoIosHeartEmpty } from "react-icons/io";
+import "./style.css";
 
 export const Favoritos = ({ favorites, handleDelete }) => {
   return (
