@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { IoIosHeartEmpty } from "react-icons/io";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Favorites from "./Favorites.js"; 
 
 function App() {
   const [joke, setJoke] = useState("");
@@ -50,6 +52,7 @@ function App() {
 
   // camada de view => JSX / HTML
   return (
+    <Router>
     <div className="App">
       <h1>Chuck Norris Joke</h1>
       <div className="joke-item">
@@ -77,8 +80,23 @@ function App() {
           <p>Nenhuma piada favorita.</p>
         )}
       </div>
+      <Link to="/favorites">Ver Favoritos</Link>
+        <Route
+          path="/favorites"
+          render={() => (
+            <Favorites favorites={favorites} handleDelete={handleDelete} />
+          )}
+        />
     </div>
+    </Router>
   );
 }
 
 export default App;
+
+
+
+
+
+
+ 
